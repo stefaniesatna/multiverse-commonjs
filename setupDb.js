@@ -1,11 +1,14 @@
-const City = require("./city")
-const Landmark = require("./landmark")
+const Cinema = require("./cinema")
+const Movie = require("./movie")
 const db = require("./db")
+const Screening = require("./screening")
 
 async function setupDb(){
-    City.hasMany(Landmark)
-    Landmark.belongsTo(City)
-    await db.sync()
+    Cinema.hasMany(Screening)
+    Screening.belongsTo(Cinema)
+    Movie.hasMany(Screening)
+    Screening.belongsTo(Movie)
+    await db.sync({ force: true, logging: console.log });
 }
 
 module.exports = setupDb

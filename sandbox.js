@@ -1,30 +1,33 @@
-const City = require("./city");
+const Cinema = require("./cinema");
+const Movie = require("./movie")
+const Screening = require("./screening")
 const setupDb = require("./setupDb");
 
 async function sandbox() {
   await setupDb()
 
-  const london = await City.create({
-    name: "London",
-    population: 9000000,
+  const kingsCross = await Cinema.create({
+    location: "Kings Cross",
+    numOfScreens: 5,
   });
 
-  const madrid = await City.create({
-    name: "Madrid",
-    population: 3000000,
+  const shoreditch = await Cinema.create({
+    location: "Shoreditch",
+    numOfScreens: 3,
   });
 
-  const nelson = await london.createLandmark({
-    name: "Nelson's Column"
+  const bond = await Movie.create({
+    title: "No Time to Die",
+    durationMins: 163
   })
 
-  const eye = await london.createLandmark({
-    name: "London Eye"
+  const s1 = await Screening.create({
+    startTime: new Date(),
+    screen: 2,
+    movieId: bond.id,
+    cinemaId: kingsCross.id
   })
 
-  const plaza = await madrid.createLandmark({
-    name: "Plaza Mayor"
-  })
 }
 
 sandbox();

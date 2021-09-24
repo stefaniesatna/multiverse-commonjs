@@ -1,10 +1,8 @@
 const express = require("express")
-// const nocache = require("nocache")
 
 const app = express()
 const port = 3000
 
-// app.use(nocache())
 app.use(express.static("public"))
 
 app.get("/now", (req, res) => {

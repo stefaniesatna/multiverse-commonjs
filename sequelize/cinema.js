@@ -6,7 +6,7 @@ class Cinema extends Model {}
 Cinema.init(
   {
     location: DataTypes.STRING,
-    numOfScreens: DataTypes.STRING,
+    numOfScreens: DataTypes.INTEGER,
   },
   {
     sequelize,

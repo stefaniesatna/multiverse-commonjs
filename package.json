@@ -10,7 +10,10 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "express": "^4.17.1",
+    "nocache": "^3.0.1",
     "sequelize": "^6.6.5",
+    "sqlite": "^4.0.23",
     "sqlite3": "^5.0.2"
   }
 }

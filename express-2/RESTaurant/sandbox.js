@@ -54,3 +54,4 @@ async function sandbox() {
 }
 
 sandbox();
+module.exports = sandbox

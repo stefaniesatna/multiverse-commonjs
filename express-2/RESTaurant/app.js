@@ -1,13 +1,10 @@
 const express = require("express");
-const sequelize = require("./db");
 
 const Company = require("./company");
 const Menu = require("./menu");
-const Location = require("./location");
 const setupDb = require("./setupDb");
 
 const app = express();
-const port = 4000;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -144,6 +141,4 @@ app.post("/companies/:id/locations", async (req, res) => {
 
 setupDb()
 
-app.listen(port, () => {
-  console.log(`Server listening on port ${port}`);
-});
+module.exports = app

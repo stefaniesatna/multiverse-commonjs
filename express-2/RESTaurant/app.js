@@ -32,8 +32,15 @@ app.get("/companies/:id", async (req, res) => {
 // Create a new company
 app.post("/companies", async (req, res) => {
   const { name, logoUrl } = req.body;
-  await Company.create({ name, logoUrl });
-  res.sendStatus(201);
+
+  if (!name || !logoUrl) {
+    res.sendStatus(400);
+    return;
+  }
+
+  const company = await Company.create({ name, logoUrl });
+  //res.sendStatus(201);
+  res.status(201).json(company);
 });
 
 // Delete a company
@@ -92,7 +99,7 @@ app.get("/menus/:id", async (req, res) => {
 app.post("/companies/:id/menus", async (req, res) => {
   const companyId = req.params.id;
   const company = await Company.findByPk(companyId);
-  
+
   if (!company) {
     return res.sendStatus(404);
   }
@@ -109,36 +116,36 @@ app.post("/companies/:id/menus", async (req, res) => {
 
 // Delete a menu
 app.delete("/menus/:id", async (req, res) => {
-    const id = req.params.id
-    const menu = await Menu.findByPk(id)
+  const id = req.params.id;
+  const menu = await Menu.findByPk(id);
 
-    if(!menu){
-        return res.sendStatus(404)
-    }
+  if (!menu) {
+    return res.sendStatus(404);
+  }
 
-    await menu.destroy()
-    res.sendStatus(200)
-})
+  await menu.destroy();
+  res.sendStatus(200);
+});
 
 // Create a new location
 app.post("/companies/:id/locations", async (req, res) => {
-    const companyId = req.params.id
-    const company = await Company.findByPk(companyId)
-    
-    if (!company) {
-        return res.sendStatus(404)
-    }
+  const companyId = req.params.id;
+  const company = await Company.findByPk(companyId);
 
-    const {name, capacity, manager} = req.body
+  if (!company) {
+    return res.sendStatus(404);
+  }
 
-    if (!name){
-        return res.sendStatus(400)
-    }
+  const { name, capacity, manager } = req.body;
 
-    await company.createLocation({ name, capacity, manager })
-    res.sendStatus(201)
-})
+  if (!name) {
+    return res.sendStatus(400);
+  }
 
-setupDb()
+  await company.createLocation({ name, capacity, manager });
+  res.sendStatus(201);
+});
 
-module.exports = app
+setupDb();
+
+module.exports = app;

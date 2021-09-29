@@ -39,7 +39,6 @@ app.post("/companies", async (req, res) => {
   }
 
   const company = await Company.create({ name, logoUrl });
-  //res.sendStatus(201);
   res.status(201).json(company);
 });
 

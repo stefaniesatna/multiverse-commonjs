@@ -9,7 +9,7 @@ async function setupDb() {
   Company.hasMany(Menu);
   Menu.belongsTo(Company);
 
-  await db.sync({ logging: false });
+  await db.sync({ force: true, logging: false });
 }
 
 module.exports = setupDb;

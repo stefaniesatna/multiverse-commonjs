@@ -1,4 +1,10 @@
 const express = require("express");
+const path = require("path");
+const Handlebars = require("handlebars");
+const expressHandlebars = require("express-handlebars");
+const {
+    allowInsecurePrototypeAccess,
+} = require("@handlebars/allow-prototype-access");
 
 const Company = require("./company");
 const Menu = require("./menu");
@@ -9,14 +15,28 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+// Setup handlebars
+const handlebars = expressHandlebars({
+  handlebars: allowInsecurePrototypeAccess(Handlebars),
+});
+
+app.engine("handlebars", handlebars);
+app.set("view engine", "handlebars");
+app.set('views', path.join(__dirname, 'views'))
+
+app.get("/", async (req, res) => {
+  const companies = await Company.findAll();
+});
+
 // Get all the companies
 app.get("/companies", async (req, res) => {
   const companies = await Company.findAll();
   if (!companies) {
     return res.sendStatus(404);
   }
-  res.json(companies);
-  res.sendStatus(200);
+  // TODO: res.json(companies);
+  // TODO: res.sendStatus(200)
+  res.render("home", { companies })
 });
 
 // Get a specific company by it's id
@@ -26,7 +46,6 @@ app.get("/companies/:id", async (req, res) => {
     return res.sendStatus(404);
   }
   res.json(company);
-  res.sendStatus(200);
 });
 
 // Create a new company

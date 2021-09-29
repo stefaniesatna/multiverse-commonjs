@@ -16,12 +16,12 @@ describe("POST /companies", () => {
         
         // should respond with a json object containing the company id
         test("should respond with a 201 status code", async () => {
-            const response = await request(app).post("/companies").send({
-                name: "Hill & Szrok",
-                logoUrl: "https://fakelogo.url/logo.png"
-            })
-            expect(response.statusCode).toBe(201)
-        })
+          const response = await request(app).post("/companies").send({
+            name: "Hill & Szrok",
+            logoUrl: "https://fakelogo.url/logo.png",
+          });
+          expect(response.statusCode).toBe(201);
+        });
 
         test("should specify json in the content type header", async () => {
             const response = await request(app).post("/companies").send({

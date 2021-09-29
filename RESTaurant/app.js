@@ -43,10 +43,20 @@ app.get("/companies", async (req, res) => {
 // Get a specific company by it's id
 app.get("/companies/:id", async (req, res) => {
   const company = await Company.findByPk(req.params.id);
+
   if (!company) {
     return res.sendStatus(404);
   }
-  res.json(company);
+
+  const menus = await Menu.findAll({
+    where: { companyId: company.id },
+  });
+
+  const locations = await Location.findAll({
+    where: { companyId: company.id}
+  })
+
+  res.render("company", { company });
 });
 
 // Create a new company

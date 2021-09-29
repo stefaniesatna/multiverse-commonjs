@@ -10,9 +10,13 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@handlebars/allow-prototype-access": "^1.0.5",
     "@types/jest": "^27.0.2",
     "express": "^4.17.1",
+    "express-handlebars": "^5.3.4",
+    "handlebars": "^4.7.7",
     "nocache": "^3.0.1",
+    "prettier": "^2.4.1",
     "sequelize": "^6.6.5",
     "sqlite": "^4.0.23",
     "sqlite3": "^5.0.2"

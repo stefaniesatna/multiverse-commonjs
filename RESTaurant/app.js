@@ -3,30 +3,27 @@ const path = require("path");
 const Handlebars = require("handlebars");
 const expressHandlebars = require("express-handlebars");
 const {
-    allowInsecurePrototypeAccess,
+  allowInsecurePrototypeAccess,
 } = require("@handlebars/allow-prototype-access");
 
-const Company = require("./company");
-const Menu = require("./menu");
-const setupDb = require("./setupDb");
+const Company = require("./models/company");
+const Menu = require("./models/menu");
+const setupDb = require("./db/setupDb");
 
 const app = express();
 
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-
-// Setup handlebars
 const handlebars = expressHandlebars({
   handlebars: allowInsecurePrototypeAccess(Handlebars),
 });
 
-app.engine("handlebars", handlebars);
-app.set("view engine", "handlebars");
-app.set('views', path.join(__dirname, 'views'))
-
-app.get("/", async (req, res) => {
-  const companies = await Company.findAll();
-});
+const setupApp = () => {
+  app.use(express.urlencoded({ extended: true }));
+  app.use(express.json());
+  app.engine("handlebars", handlebars);
+  app.set("view engine", "handlebars");
+  app.set("views", path.join(__dirname, "views"));
+};
+setupApp();
 
 // Get all the companies
 app.get("/companies", async (req, res) => {
@@ -36,7 +33,7 @@ app.get("/companies", async (req, res) => {
   }
   // TODO: res.json(companies);
   // TODO: res.sendStatus(200)
-  res.render("home", { companies })
+  res.render("home", { companies });
 });
 
 // Get a specific company by it's id

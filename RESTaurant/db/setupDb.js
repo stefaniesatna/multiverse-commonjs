@@ -1,6 +1,6 @@
-const Company = require("./company");
-const Location = require("./location");
-const Menu = require("./menu");
+const Company = require("../models/company");
+const Location = require("../models/location");
+const Menu = require("../models/menu");
 const db = require("./db");
 
 async function setupDb() {

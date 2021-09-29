@@ -9,11 +9,15 @@ const {
 const Company = require("./models/company");
 const Menu = require("./models/menu");
 const setupDb = require("./db/setupDb");
+const companyUrl = require("./helpers/companyUrl");
 
 const app = express();
 
 const handlebars = expressHandlebars({
   handlebars: allowInsecurePrototypeAccess(Handlebars),
+  helpers: {
+    companyUrl: companyUrl
+  }
 });
 
 const setupApp = () => {

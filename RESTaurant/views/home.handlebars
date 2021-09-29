@@ -2,9 +2,9 @@
 <h1>Companies</h1>
 {{#each companies}}
     <article>
-        <label>
-            Name:
+        <a href={{companyUrl id}}>
             <span>{{this.name}}</span>
-        </label>
+            <img src={{this.logoUrl}} width="500"/>
+        </a>
     </article>
 {{/each}}

@@ -9,3 +9,18 @@
     </article>
     <br>
 {{/each}}
+
+<h1>Create a new company</h1>
+<form action="/companies" method="POST">
+    <label>
+        Name:
+        <input name="name" id="company-name-input" type="text" required>
+    </label>
+    <br>
+    <label>
+        LogoUrl:
+        <input name="logoUrl" id="logoUrl-input" type="url" required>
+    </label>
+    <br>
+    <button>Create</button>
+</form>

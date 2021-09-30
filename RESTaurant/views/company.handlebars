@@ -16,33 +16,3 @@
         <p>Manager: {{this.manager}}</p>
     </article>
 {{/each}}
-
-<h1>Create a new menu</h1>
-<form action={{companyMenusUrl company.id}} method="POST" onsubmit="onSave();return false;">
-    <label>
-        Title:
-        <input name="title" id="menu-title-input" type="text" required>
-    </label>
-    <button>Create</button>
-</form>
-
-<h1>Create a new location</h1>
-<form action={{companyLocationsUrl company.id}} method="POST" onsubmit={{}}>
-    <label>
-        Name:
-        <input name="location-name" id="location-name-input" type="text" required>
-    </label>
-    <br>
-    <label>
-        Capacity:
-        <input name="capacity" id="capacity-input" type="number" required>
-    </label>
-    <br>
-    <label>
-        Manager:
-        <input name="manager" id="manager-input" type="text" required>
-    </label>
-    <br>
-    <button>Create</button>
-</form>
-

@@ -71,11 +71,6 @@ app.post("/companies", async (req, res) => {
   res.status(201).json(company);
 });
 
-// Display a create-company form
-app.get("/create-company", async (req, res) => {
-  res.render("createCompany")
-})
-
 // Delete a company
 app.delete("/companies/:id", async (req, res) => {
   const id = req.params.id;
@@ -175,16 +170,7 @@ app.post("/companies/:id/locations", async (req, res) => {
   }
 
   await company.createLocation({ name, capacity, manager });
-
-  const company = await Company.findByPk(req.params.id, {
-    include: [Menu, Location]
-  });
-
-  if (!company) {
-    return res.sendStatus(404);
-  }
-
-  res.render(`companies/${companyId}`, locations)
+  res.sendStatus(201);
 });
 
 // Get all company's locations

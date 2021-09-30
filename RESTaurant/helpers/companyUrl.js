@@ -1,2 +1,2 @@
-const companyUrl = id => `companies/${id}`
+const companyUrl = id => `/companies/${id}`
 module.exports = companyUrl

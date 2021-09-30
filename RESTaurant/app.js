@@ -8,15 +8,20 @@ const {
 
 const Company = require("./models/company");
 const Menu = require("./models/menu");
+const Location = require("./models/location")
 const setupDb = require("./db/setupDb");
 const companyUrl = require("./helpers/companyUrl");
+const companyLocationsUrl = require("./helpers/companyLocationsUrl");
+const companyMenusUrl = require("./helpers/companyMenusUrl");
 
 const app = express();
 
 const handlebars = expressHandlebars({
   handlebars: allowInsecurePrototypeAccess(Handlebars),
   helpers: {
-    companyUrl: companyUrl
+    companyUrl: companyUrl,
+    companyLocationsUrl: companyLocationsUrl,
+    companyMenusUrl: companyMenusUrl
   }
 });
 
@@ -106,11 +111,10 @@ app.get("/companies/:id/menus", async (req, res) => {
       companyId: companyId,
     },
   });
-  if (!menus || menus.length === 0) {
+  if (!menus) {
     return res.sendStatus(404);
   }
-  res.json(menus);
-  res.sendStatus(200);
+  res.render("menus", { menus });
 });
 
 // Get a specific menu by its id
@@ -173,6 +177,20 @@ app.post("/companies/:id/locations", async (req, res) => {
 
   await company.createLocation({ name, capacity, manager });
   res.sendStatus(201);
+});
+
+// Get all company's locations
+app.get("/companies/:id/locations", async (req, res) => {
+  const companyId = req.params.id;
+  const locations = await Location.findAll({
+    where: {
+      companyId: companyId,
+    },
+  });
+  if (!locations) {
+    return res.sendStatus(404);
+  }
+  res.render("locations", { locations });
 });
 
 setupDb();

@@ -138,7 +138,9 @@ app.post("/companies/:id/menus", async (req, res) => {
   }
 
   await company.createMenu({ title });
-  res.sendStatus(201);
+
+  const url = "/companies/" + companyId
+  res.redirect(url);
 });
 
 // Delete a menu

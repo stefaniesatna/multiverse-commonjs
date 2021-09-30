@@ -1,14 +1,14 @@
 <!--home.handlebars-->
 <h1>{{company.name}}</h1>
 <img src={{company.logoUrl}} width="500"/>
-<h1>Menus</h1>
+<h2>Menus</h2>
 {{#each company.menus}}
     <article>
         <p>{{this.title}}</p>
     </article>
 {{/each}}
 
-<h1>Locations</h1>
+<h2>Locations</h2>
 {{#each company.locations}}
     <article>
         <h3>{{this.name}}</h3>
@@ -16,3 +16,10 @@
         <p>Manager: {{this.manager}}</p>
     </article>
 {{/each}}
+<h1>Create a new menu</h1>
+<form action={{companyMenusUrl company.id}} method="POST">
+    <label>
+        <input name="title" id="menu-title-input" type="text" required>
+    </label>
+    <button>Create</button>
+</form>

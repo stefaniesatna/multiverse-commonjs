@@ -1,5 +1,18 @@
 <!--home.handlebars-->
 <h1>{{company.name}}</h1>
 <img src={{company.logoUrl}} width="500"/>
-<a href={{companyLocationsUrl company.id}}>Locations</a>
-<a href={{companyMenusUrl company.id}}>Menus</a>
+<h1>Menus</h1>
+{{#each company.menus}}
+    <article>
+        <p>{{this.title}}</p>
+    </article>
+{{/each}}
+
+<h1>Locations</h1>
+{{#each company.locations}}
+    <article>
+        <h3>{{this.name}}</h3>
+        <p>Capacity: {{this.capacity}}</p>
+        <p>Manager: {{this.manager}}</p>
+    </article>
+{{/each}}

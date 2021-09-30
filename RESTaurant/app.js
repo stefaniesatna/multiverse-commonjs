@@ -47,19 +47,13 @@ app.get("/companies", async (req, res) => {
 
 // Get a specific company by it's id
 app.get("/companies/:id", async (req, res) => {
-  const company = await Company.findByPk(req.params.id);
+  const company = await Company.findByPk(req.params.id, {
+    include: [Menu, Location]
+  });
 
   if (!company) {
     return res.sendStatus(404);
   }
-
-  const menus = await Menu.findAll({
-    where: { companyId: company.id },
-  });
-
-  const locations = await Location.findAll({
-    where: { companyId: company.id}
-  })
 
   res.render("company", { company });
 });
@@ -114,7 +108,7 @@ app.get("/companies/:id/menus", async (req, res) => {
   if (!menus) {
     return res.sendStatus(404);
   }
-  res.render("menus", { menus });
+  res.json(menus)
 });
 
 // Get a specific menu by its id
@@ -190,7 +184,7 @@ app.get("/companies/:id/locations", async (req, res) => {
   if (!locations) {
     return res.sendStatus(404);
   }
-  res.render("locations", { locations });
+  res.json(locations);
 });
 
 setupDb();

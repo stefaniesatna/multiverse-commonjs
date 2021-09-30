@@ -3,8 +3,9 @@
 {{#each companies}}
     <article>
         <a href={{companyUrl this.id}}>
-            <span>{{this.name}}</span>
             <img src={{this.logoUrl}} width="500"/>
+            <h2>{{this.name}}</h2>
         </a>
     </article>
+    <br>
 {{/each}}

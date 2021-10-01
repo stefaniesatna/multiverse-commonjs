@@ -13,7 +13,7 @@ const setupDb = require("./db/setupDb");
 const companyUrl = require("./helpers/companyUrl");
 const companyLocationsUrl = require("./helpers/companyLocationsUrl");
 const companyMenusUrl = require("./helpers/companyMenusUrl");
-const deleteId = require("./helpers/deleteId")
+const deleteIdString = require("./helpers/deleteIdString")
 
 const app = express();
 
@@ -23,7 +23,7 @@ const handlebars = expressHandlebars({
     companyUrl: companyUrl,
     companyLocationsUrl: companyLocationsUrl,
     companyMenusUrl: companyMenusUrl,
-    deleteId: deleteId
+    deleteId: deleteIdString
   }
 });
 

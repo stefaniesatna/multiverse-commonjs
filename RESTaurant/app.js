@@ -172,7 +172,8 @@ app.post("/companies/:id/locations", async (req, res) => {
   }
 
   await company.createLocation({ name, capacity, manager });
-  res.sendStatus(201);
+  const url = "/companies/" + companyId
+  res.redirect(url);
 });
 
 // Get all company's locations

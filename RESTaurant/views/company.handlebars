@@ -19,7 +19,24 @@
 <h1>Create a new menu</h1>
 <form action={{companyMenusUrl company.id}} method="POST">
     <label>
+        Name:
         <input name="title" id="menu-title-input" type="text" required>
+    </label>
+    <button>Create</button>
+</form>
+<h1>Create a new location</h1>
+<form action={{companyLocationsUrl company.id}} method="POST">
+    <label>
+        Name:
+        <input name="name" id="location-name-input" type="text" required>
+    </label>
+    <label>
+        Capacity:
+        <input name="capacity" id="location-capacity-input" type="number" required>
+    </label>
+    <label>
+        Manager:
+        <input name="manager" id="location-manager-input" type="text" required>
     </label>
     <button>Create</button>
 </form>

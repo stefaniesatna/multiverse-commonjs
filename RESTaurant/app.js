@@ -13,6 +13,7 @@ const setupDb = require("./db/setupDb");
 const companyUrl = require("./helpers/companyUrl");
 const companyLocationsUrl = require("./helpers/companyLocationsUrl");
 const companyMenusUrl = require("./helpers/companyMenusUrl");
+const deleteId = require("./helpers/deleteId")
 
 const app = express();
 
@@ -21,7 +22,8 @@ const handlebars = expressHandlebars({
   helpers: {
     companyUrl: companyUrl,
     companyLocationsUrl: companyLocationsUrl,
-    companyMenusUrl: companyMenusUrl
+    companyMenusUrl: companyMenusUrl,
+    deleteId: deleteId
   }
 });
 
@@ -189,6 +191,10 @@ app.get("/companies/:id/locations", async (req, res) => {
   }
   res.json(locations);
 });
+
+function deleteCompany = () => {
+  document.getElementById("delete")
+}
 
 setupDb();
 

@@ -6,7 +6,8 @@
             <img src={{this.logoUrl}} width="500"/>
             <h2>{{this.name}}</h2>
         </a>
-        <button id={{deleteId this.id}}>Delete</button>
+        <button id="delete{{this.id}}">Delete</button>
     </article>
     <br>
 {{/each}}
+<script src="setupEventListeners.js"></script>

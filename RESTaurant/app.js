@@ -33,8 +33,6 @@ app.get("/companies", async (req, res) => {
   if (!companies) {
     return res.sendStatus(404);
   }
-  // TODO: res.json(companies);
-  // TODO: res.sendStatus(200)
   res.render("home", { companies });
 });
 
@@ -113,7 +111,6 @@ app.get("/menus/:id", async (req, res) => {
     return res.sendStatus(404);
   }
   res.json(menu);
-  res.sendStatus(200);
 });
 
 // Create a new menu

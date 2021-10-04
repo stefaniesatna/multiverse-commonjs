@@ -10,19 +10,11 @@ const Company = require("./models/company");
 const Menu = require("./models/menu");
 const Location = require("./models/location")
 const setupDb = require("./db/setupDb");
-const companyUrl = require("./helpers/companyUrl");
-const companyLocationsUrl = require("./helpers/companyLocationsUrl");
-const companyMenusUrl = require("./helpers/companyMenusUrl");
 
 const app = express();
 
 const handlebars = expressHandlebars({
   handlebars: allowInsecurePrototypeAccess(Handlebars),
-  helpers: {
-    companyUrl: companyUrl,
-    companyLocationsUrl: companyLocationsUrl,
-    companyMenusUrl: companyMenusUrl,
-  }
 });
 
 const setupApp = () => {

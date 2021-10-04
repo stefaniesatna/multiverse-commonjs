@@ -17,7 +17,7 @@
     </article>
 {{/each}}
 <h1>Create a new menu</h1>
-<form action={{companyMenusUrl company.id}} method="POST">
+<form action="/companies/{{company.id}}/menus" method="POST">
     <label>
         Name:
         <input name="title" id="menu-title-input" type="text" required>
@@ -25,7 +25,7 @@
     <button>Create</button>
 </form>
 <h1>Create a new location</h1>
-<form action={{companyLocationsUrl company.id}} method="POST">
+<form action="/companies/{{company.id}}/locations" method="POST">
     <label>
         Name:
         <input name="name" id="location-name-input" type="text" required>

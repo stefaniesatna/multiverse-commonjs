@@ -82,8 +82,8 @@ app.delete("/companies/:id", async (req, res) => {
   }
 
   await company.destroy();
-  const url = "/companies"
-  res.redirect(url);
+  res.sendStatus(200)
+  // res.redirect("/companies");
 });
 
 // Replace a company

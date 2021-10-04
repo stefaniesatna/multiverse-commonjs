@@ -9,6 +9,7 @@ function setupEventListeners(){
     elements.forEach(el => {
         const companyId = el.getAttribute("companyId")
         el.addEventListener("click", () => {
+            console.log("We're in business")
             deleteCompany(companyId)
         })
     })
@@ -19,9 +20,6 @@ async function deleteCompany(id){
     const url = `/companies/${id}`;
     await fetch(url, {
         method: "DELETE",
-        headers: {
-            "Content-Type": "application/json",
-        }
     })
     location.reload()
 }
